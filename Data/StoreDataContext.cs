@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ProductCatalog.Data.Maps;
 using ProductCatalog.Models;
 
 namespace ProductCatalog.Data
@@ -11,7 +12,13 @@ namespace ProductCatalog.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=pdtctl;User ID=sa;Password=1q2w3e%&!");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=procat;User ID=sa;Password=1q2w3e%&!");
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfiguration(new ProductMap());
+            builder.ApplyConfiguration(new CategoryMap());
         }
     }
 }
