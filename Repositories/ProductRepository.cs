@@ -37,7 +37,7 @@ namespace ProductCatalog.Repositories
             // return _context.Products.Find(id);
             return _context.Products
                 .AsTracking()
-                .FirstOrDefault(x => x.Id == id);
+                .SingleOrDefault(x => x.Id == id);
         }
 
         public void Save(Product product)

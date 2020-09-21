@@ -16,6 +16,7 @@ namespace ProductCatalog
             
             services.AddScoped<StoreDataContext, StoreDataContext>();
             services.AddTransient<ProductRepository, ProductRepository>();
+            services.AddTransient<CategoryRepository, CategoryRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
