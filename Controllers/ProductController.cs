@@ -22,6 +22,7 @@ namespace ProductCatalog.Controllers
 
         [Route("v1/products")]
         [HttpGet]
+        [ResponseCache(Location = ResponseCacheLocation.Client, Duration = 60)] // Cache-Control: public,max-age=60
         public IEnumerable<ListProductViewModel> Get()
         {
             return _repository.Get();
