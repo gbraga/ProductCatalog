@@ -20,6 +20,11 @@ namespace ProductCatalog
             services.AddScoped<StoreDataContext, StoreDataContext>();
             services.AddTransient<ProductRepository, ProductRepository>();
             services.AddTransient<CategoryRepository, CategoryRepository>();
+
+            services.AddSwaggerGen(x => 
+            {
+                x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Sample Store", Version = "1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -29,6 +34,12 @@ namespace ProductCatalog
 
             app.UseMvc();
             app.UseResponseCompression(); // Torna todas as respostas compactadas com gzip
+
+            app.UseSwagger();
+            app.UseSwaggerUI(x => 
+            {
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "Sample Store - v1");
+            });
         }
     }
 }
